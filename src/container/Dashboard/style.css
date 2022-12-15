@@ -1,0 +1,14 @@
+.left_section{
+  max-height: 57vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+.right_section{
+  max-height: 48vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding-top: 54px;
+}
+.total{
+  padding: 31px;
+}

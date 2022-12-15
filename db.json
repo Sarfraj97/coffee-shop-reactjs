@@ -1,0 +1,40 @@
+{
+  "items": [
+    {
+      "id": 1,
+      "name": "Latte",
+      "price": 200,
+      "category": "Bites"
+    },
+    {
+      "id": 2,
+      "name": "Capacino",
+      "price": 200,
+      "category": "HotCoffee"
+    },
+    {
+      "id": 3,
+      "name": "Burger",
+      "price": 200,
+      "category": "Desert"
+    },
+    {
+      "id": 4,
+      "name": "Pasta",
+      "price": 200,
+      "category": "Coffee"
+    },
+    {
+      "id": 5,
+      "name": "Ginger Bread",
+      "price": 200,
+      "category": "HotCoffee"
+    },
+    {
+      "id": 6,
+      "name": "Black Coffee",
+      "price": 200,
+      "category": "HotCoffee"
+    }
+  ]
+}
