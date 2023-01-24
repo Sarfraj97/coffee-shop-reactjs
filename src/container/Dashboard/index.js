@@ -3,6 +3,7 @@ import Items from "../../components/Items";
 import Invoice from "../../components/Invoice";
 import ItemService from "../../services/items";
 import "./style.css";
+import { type } from "@testing-library/user-event/dist/type";
 
 function Dashboard() {
   const [items, setItems] = useState([]);
@@ -18,20 +19,23 @@ function Dashboard() {
     setCategories(Array.from(cat));
   }, [items]);
 
-  const handleClick = (action, id) => {
+  const handleClick = (action, id, quantity) => {
+    console.log(quantity)
+    if (quantity === '' || quantity === '0') return
     if (action === "add") {
       const item_to_add = items.find((i) => i.id === id);
       const find_item = invoiceItems.find((i) => i.id == item_to_add.id);
       if (find_item) {
         let updated_item = invoiceItems.map((item) => {
           if (item.id === find_item.id) {
-            return { ...item, quantity: item.quantity + 1 };
+            // console.log(typeof(quantity), typeof(item.quantity));
+            return { ...item, quantity: Number(item.quantity) + Number(quantity) };
           } else return item;
         });
         setInvoiceItems(updated_item);
       } else {
-        setInvoiceItems([...invoiceItems, { ...item_to_add, quantity: 1 }]);
-        console.log(invoiceItems, "Invoice after add first time");
+        setInvoiceItems([...invoiceItems, { ...item_to_add, quantity: Number(quantity) }]);
+        // console.log(invoiceItems, "Invoice after add first time");
       }
     } else {
       const item_to_add = items.find((i) => i.id === id);
@@ -39,7 +43,7 @@ function Dashboard() {
       if (find_item) {
         let updated_item = invoiceItems.map((item) => {
           if (item.id === find_item.id) {
-            if (item.quantity > 1) { return { ...item, quantity: item.quantity - 1 } }
+            if (((item.quantity - quantity) !== 0) && action !== 'remove_all' ) { return { ...item, quantity: Number(item.quantity) - Number(quantity) } }            
             else return false;
           } else return item;
         });
@@ -56,7 +60,7 @@ function Dashboard() {
           <div className="col-md-9 col-lg-9 col-sm-9 col-12 px-0">
             <Items items={items} handleClick={handleClick} />
           </div>
-          <Invoice invoiceItems={invoiceItems} />
+          <Invoice invoiceItems={invoiceItems} handleClick={handleClick} />
         </div>
       </div>
     </>

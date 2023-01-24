@@ -7,8 +7,9 @@ export default function Invoice(props) {
   const [isOpenModal, setIsOpenModal] = useState(false);
   const handleShowModal = () => setIsOpenModal(!isOpenModal);
   const invoiceItems = props.invoiceItems
+  const handleClick = props.handleClick
   // console.log(invoiceItems.length)
-  const total_price = invoiceItems.length ? invoiceItems.reduce((sum, current) => sum + current.price * current.quantity, 0) : 0
+  const total_price = invoiceItems.length ? (invoiceItems.reduce((sum, current) => sum + current.price * current.quantity, 0)/100) * 118 : 0
   
   return (
     <>
@@ -16,7 +17,7 @@ export default function Invoice(props) {
         <div className="right_section px-2">
         {invoiceItems.map(item => {
           return (
-            <ListItem key={item.id} item={item}/>
+            <ListItem key={item.id} item={item} handleClick={handleClick}/>
           )
         })}
         </div>

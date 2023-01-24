@@ -2,3 +2,8 @@
   width: 150px;
   margin: 40px auto;  
 }
+
+input[type='number']{
+  width: 80px;
+  text-align: center;
+}
