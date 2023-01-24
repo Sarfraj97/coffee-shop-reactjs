@@ -3,12 +3,19 @@ import Items from "../../components/Items";
 import Invoice from "../../components/Invoice";
 import ItemService from "../../services/items";
 import "./style.css";
-import { type } from "@testing-library/user-event/dist/type";
+// import { type } from "@testing-library/user-event/dist/type";
 
 function Dashboard() {
   const [items, setItems] = useState([]);
   const [invoiceItems, setInvoiceItems] = useState([]);
   const [categories, setCategories] = useState([]);
+  const [inputText, setInputText] = useState("");
+  
+  let inputHandler = (e) => {
+    //convert input text to lower case
+    var lowerCase = e.target.value;
+    setInputText(lowerCase);
+  };
 
   useEffect(() => {
     ItemService.getAll().then((item) => setItems(item));
@@ -51,14 +58,15 @@ function Dashboard() {
       }
     }
   };
-  console.log(invoiceItems, "Invoices");
+  // console.log(invoiceItems, "Invoices");
   return (
     <>
       <div className="container">
         <h2 className="mt-5">Dashboard</h2>
+        <input type="text" className="" placeholder="search" onChange={inputHandler}/>
         <div className="row">
           <div className="col-md-9 col-lg-9 col-sm-9 col-12 px-0">
-            <Items items={items} handleClick={handleClick} />
+            <Items items={items} inputText={inputText} handleClick={handleClick} />
           </div>
           <Invoice invoiceItems={invoiceItems} handleClick={handleClick} />
         </div>

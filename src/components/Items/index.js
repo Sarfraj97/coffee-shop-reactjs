@@ -3,6 +3,18 @@ import ListItem from "../../components/Items/ListItem";
 
 export default function Items(props) {
   // console.log(props.items, "inside")
+  const items = props.items
+  const inputText = props.inputText
+
+  const filteredData = items.filter((el) => { 
+    if (inputText === '') {
+       return el;
+    } 
+    else { 
+      return el.name.includes(inputText)
+    } 
+  })
+
   return (
     <div>
       <div className="row py-4 border-bottom align-items-center px-0 mx-0">
@@ -11,7 +23,7 @@ export default function Items(props) {
       </div>
       
       <div className="left_section">
-        {props.items.map(item => {
+        {filteredData.map(item => {
           return (
             <ListItem key={item.id} item={item} handleClick={props.handleClick}/>
           )

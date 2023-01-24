@@ -33,7 +33,7 @@ export default function ListItem(props) {
             >
               <AiOutlinePlusCircle size={25}/>
             </button>
-            <input type="number" min="0" ref={inputElement}/>  
+            <input type="number" min="0" ref={inputElement}/> 
           </div>
         </div>
       </div>
