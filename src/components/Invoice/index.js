@@ -53,6 +53,7 @@ export default function Invoice(props) {
       <ModalWrapper
         isOpenModal={isOpenModal}
         handleShowModal={handleShowModal}
+        invoiceItems={invoiceItems}
       />
     </>
   );

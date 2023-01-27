@@ -11,7 +11,7 @@ export default function Items(props) {
        return el;
     } 
     else { 
-      return el.name.includes(inputText)
+      return el.name.toLowerCase().includes(inputText.toLowerCase())      
     } 
   })
 

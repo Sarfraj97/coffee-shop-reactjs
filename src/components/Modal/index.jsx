@@ -2,14 +2,14 @@ import React from "react";
 import Modal from "react-bootstrap/Modal";
 import "bootstrap/dist/css/bootstrap.css";
 import Button from "../Button";
-import { useNavigate } from "react-router";
+import { useNavigate } from "react-router-dom";
 
 const ModalWrapper = (props) => {
-  const { isOpenModal, handleShowModal } = props;
+  const { isOpenModal, handleShowModal, invoiceItems } = props;
   const navigate = useNavigate()
 
   const handleClickYes = () => {
-    navigate('/customer')
+    navigate("/customer", {state: invoiceItems})
   };
 
   return (
