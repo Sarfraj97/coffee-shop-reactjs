@@ -27,33 +27,25 @@ function Dashboard() {
   }, [items]);
 
   const handleClick = (id, quantity) => {
-    // console.log(quantity)
     if (quantity === '') return
     const item_to_add = items.find((i) => i.id === id);
     const find_item = invoiceItems.find((i) => i.id == item_to_add.id);
-    if ( find_item && quantity === '0' ) { 
-      let updated_item = invoiceItems.map((item) => {
-        if (item.id === find_item.id) {
-          // console.log(typeof(quantity), typeof(item.quantity));
-          return false;
-        } else return item;
-      })
-      setInvoiceItems(updated_item.filter(item => item !== false));
+    
+    if ( find_item && quantity === '0' ) {
+      setInvoiceItems(invoiceItems.filter(item => item.id !== find_item.id));
     }
     else if (find_item) {
       let updated_item = invoiceItems.map((item) => {
-        if (item.id === find_item.id) {
-          // console.log(typeof(quantity), typeof(item.quantity));
+        if (item.id === find_item.id) {          
           return { ...item, quantity: Number(quantity) };
         } else return item;
       });
       setInvoiceItems(updated_item);
-    } else {
+    } else if (quantity !== '0') {      
       setInvoiceItems([...invoiceItems, { ...item_to_add, quantity: Number(quantity) }]);
-      // console.log(invoiceItems, "Invoice after add first time");
     }
   };
-  // console.log(invoiceItems, "Invoices");
+  
   return (
     <>
       <div className="container">

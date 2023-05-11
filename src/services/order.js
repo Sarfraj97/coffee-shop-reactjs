@@ -1,5 +1,5 @@
 import axios from 'axios'
-const baseUrl = 'http://localhost:3000/api/v1/orders'
+const baseUrl = `${process.env.REACT_APP_BASE_URL}/orders`
 
 const CreateOrder = () => {
   const request = axios.post(baseUrl)
