@@ -7,8 +7,11 @@
   max-height: 48vh;
   overflow-y: auto;
   overflow-x: hidden;
-  padding-top: 54px;
+  /* padding-top: 54px; */
 }
 .total{
   padding: 31px;
+}
+.cursor-pointer {
+  cursor: pointer;
 }
