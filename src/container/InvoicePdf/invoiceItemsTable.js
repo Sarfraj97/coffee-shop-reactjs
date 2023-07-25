@@ -17,13 +17,15 @@ const styles = StyleSheet.create({
     },
 });
 
-export default function invoiceItemsTable() {
+export default function invoiceItemsTable(props) {
+
+  const { invoiceItems, total } = props;
+
   return (
     <View style={styles.tableContainer}>
         <InvoiceTableHeader />
-        <InvoiceTableRow items="asdf"/>
-        <InvoiceTableBlankSpace rowsCount="swdefrdsa"/>
-        <InvoiceTableFooter items="werfdsa" />
+        {invoiceItems.map(item => <InvoiceTableRow item={item}/>)}        
+        <InvoiceTableFooter total={total} />
     </View>
   )
 }

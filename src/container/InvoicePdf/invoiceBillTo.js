@@ -14,15 +14,17 @@ const styles = StyleSheet.create({
 
 
   export default function invoiceBillTo(props) {
-    console.log("props", props.customer.name);
+    // console.log("props", props.customer.name);
     // const customer_name = props.customer.name
+    const { customer } = props
+
+
     return (
       <View style={styles.headerContainer}>
-        <Text style={styles.billTo}>Bill To: {props.customer.name}</Text>
-        <Text>company</Text>
-        <Text>address</Text>
-        <Text>invoice.phone</Text>
-        <Text>invoice.email</Text>
+        <Text style={styles.billTo}>Bill To: {customer.name}</Text>        
+        <Text>Address: {customer.address}</Text>
+        <Text>Phone: {customer.phone}</Text>
+        <Text>Email: {}</Text>
     </View>
     )
   }

@@ -9,14 +9,18 @@ import InvoiceNo from '../InvoicePdf/invoiceNo'
 import InvoiceItemsTable from '../InvoicePdf/invoiceItemsTable'
 import InvoiceThankYouMsg from '../InvoicePdf/invoiceThankYouMsg'
 import logo from '../../../src/avatar7.png'
+import Items from "../../components/Items";
 
-export default function Index() {
 
+export default function Index(props) {
+  
   const location = useLocation();
+  console.log(props, "customers detail page")
   const [invoiceItems, setInvoiceItems] = useState(location.state);
   const { id } = useParams();
   // console.log(id);
   const [customer, setCustomer] = useState({});
+  const handleClick = location.handleClick
 
   useEffect(() => {
     CustomerService.get(id).then((customer) => {
@@ -29,9 +33,7 @@ export default function Index() {
         (sum, current) => sum + current.price * current.quantity,
         0
       ))
-    : 0;
-
-  const withGst = (total_price/100) * 118
+    : 0;  
 
   const styles = StyleSheet.create({
     page: {
@@ -52,22 +54,33 @@ export default function Index() {
     viewer: {
       width: '100%',
       height: '75rem'
+    },
+    fragment: {
+      display:'flex',
     }
   });
 
   return (
-    <Fragment>
+    <div className='container-fluid'>
+    <div className='row'>
+    <div className='col-md-4'>
+       <Items items={invoiceItems} inputText={""} handleClick={handleClick} />    
+    </div>
+
+    <div className='col-md-8'>
     <PDFViewer style={styles.viewer}>
       <Document>
-        <Page size="A4" style={styles.page}>
-            <Image style={styles.logo} src={logo} />
-            <InvoiceTitle title='Invoice'/>
-            <InvoiceNo invoiceItems={invoiceItems}/>
-            <BillTo invoiceItems={invoiceItems} customer={customer}/>
-            <InvoiceItemsTable invoiceItems={invoiceItems} />
-            <InvoiceThankYouMsg />
-        </Page>
+      <Page size="A4" style={styles.page}>
+        {customer.name !== 'random' && <Image style={styles.logo} src={logo} />}
+        {customer.name !== 'random' && <InvoiceTitle title='Invoice' />}
+        {customer.name !== 'random' && <InvoiceNo invoiceItems={invoiceItems} />}
+        {customer.name !== 'random' && <BillTo invoiceItems={invoiceItems} customer={customer} />}
+        <InvoiceItemsTable invoiceItems={invoiceItems} total={total_price} />
+        <InvoiceThankYouMsg />
+      </Page>
       </Document>
     </PDFViewer>   
-    </Fragment>     
+    </div> 
+    </div>  
+    </div>    
 )}

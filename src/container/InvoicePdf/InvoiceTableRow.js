@@ -4,12 +4,14 @@ import {Text, View, StyleSheet } from '@react-pdf/renderer';
 const borderColor = '#90e5fc'
 const styles = StyleSheet.create({
     row: {
-        flexDirection: 'row',
-        borderBottomColor: '#bff0fd',
-        borderBottomWidth: 1,
-        alignItems: 'center',
-        height: 24,
-        fontStyle: 'bold',
+      flexDirection: 'row',
+      borderBottomColor: '#bff0fd',      
+      borderBottomWidth: 1,
+      alignItems: 'center',
+      height: 24,
+      textAlign: 'center',
+      fontStyle: 'bold',
+      flexGrow: 1,
     },
     description: {
         width: '60%',
@@ -40,13 +42,16 @@ const styles = StyleSheet.create({
   });
 
 
-export default function InvoiceTableRow() {
+export default function InvoiceTableRow(props) {
+
+  const { item } = props;
+
   return (
-    <View style={styles.row} key={456789}>
-      <Text style={styles.description}>desc</Text>
-      <Text style={styles.qty}>qty</Text>
-      <Text style={styles.rate}>rate</Text>
-      {/* <Text style={styles.amount}>{(item.qty * item.rate).toFixed(2)}</Text> */}
+    <View style={styles.row}>
+      <Text style={styles.description}>{item.name}</Text>
+      <Text style={styles.qty}>{item.quantity}</Text>
+      <Text style={styles.rate}>{item.price}</Text>  
+      <Text style={styles.rate}>{item.quantity * item.price}</Text>      
     </View>
   )
 }

@@ -1,5 +1,6 @@
 import React, { Fragment } from 'react';
 import {Text, View, StyleSheet } from '@react-pdf/renderer';
+// import {getCurrentDate} from '../../utils'
 
 const styles = StyleSheet.create({
     invoiceNoContainer: {
@@ -23,7 +24,10 @@ const styles = StyleSheet.create({
 
 export default function invoiceNo(props) {
 
-  const invoiceItems = props.invoiceItems
+  const { invoiceItems } = props
+
+  let newDate = new Date()
+  let date = newDate.getDate();
 
   return (
     <Fragment>
@@ -32,8 +36,7 @@ export default function invoiceNo(props) {
           <Text style={styles.invoiceDate}>111222</Text>
       </View >
       <View style={styles.invoiceDateContainer}>
-          <Text style={styles.label}>Date: </Text>
-          <Text >Date transaction</Text>
+          <Text style={styles.label}>Date: {newDate.toLocaleString() + ''}</Text>
       </View >
     </Fragment>    
   )

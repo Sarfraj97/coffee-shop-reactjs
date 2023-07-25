@@ -1,15 +1,20 @@
 import React from 'react'
 
-export default function ListItem(props) {
-  const item = props.item
-  const handleClick = props.handleClick
+export default function ListItem(props) {  
+  const { item, handleClick, handlePriceChange } = props
+
   return (
-    <div className="row py-4 px-2 justify-content-end align-items-center">
-      <div className="col-4 text-start">{item.name}</div>
-      <div className="col-4 text-center">x{item.quantity}</div>
-      <div className="col-4 text-end">${item.price * item.quantity}</div>
-      <div className='d-grid gap-2 d-md-flex mt-2 mr-2'>
-      <button type="button" className="btn btn-danger btn-sm mr-4"  onClick={() => handleClick(item.id, '0')}>remove</button>           
+    <div className="row py-4 px-2 justify-content-between align-items-center">
+      <div className="col-3 text-start">{item.name}</div>
+      <div className="col-3 text-center">x{item.quantity}</div>
+      <div className="col-3 text-end">
+        Rs.{item.price * item.quantity}
+      </div>
+      <div className='col-3  d-flex mt-2 justify-content-end'>
+      <button type="button" className="btn btn-danger btn-sm mr-4"  onClick={() => handleClick(item.id, 0)}><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+  <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6Z"/>
+  <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1ZM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118ZM2.5 3h11V2h-11v1Z"/>
+</svg> </button>          
       </div>
     </div>
   )

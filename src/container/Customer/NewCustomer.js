@@ -37,7 +37,7 @@ export default function NewCustomer(props) {
               <label>GST No.</label>
               <input type="text" className="form-control" id="customerInputGst" name="gst" placeholder="GST No." onChange={handleChange}/>
             </div>
-            <button type="submit" className="btn btn-primary my-4">Submit</button>
+            <button type="submit" className="btn btn-primary mt-4">Submit</button>
           </form>
     </div>
   )

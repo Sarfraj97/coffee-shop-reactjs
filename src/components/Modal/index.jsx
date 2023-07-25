@@ -5,11 +5,12 @@ import Button from "../Button";
 import { useNavigate } from "react-router-dom";
 
 const ModalWrapper = (props) => {
-  const { isOpenModal, handleShowModal, invoiceItems } = props;
+  console.log(props, "Modal page")
+  const { isOpenModal, handleShowModal, invoiceItems, handleClick } = props;
   const navigate = useNavigate()
 
   const handleClickYes = () => {
-    navigate("/customer", {state: invoiceItems})
+    navigate("/customer", { state: invoiceItems })
   };
 
   return (

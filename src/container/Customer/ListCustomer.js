@@ -2,9 +2,9 @@ import React from 'react'
 import { useNavigate } from "react-router";
 import "./style.css"
 
-export default function ListCustomer(props) {
-  const customer = props.customer
-  const invoiceItems = props.invoiceItems
+export default function ListCustomer(props) {  
+  const { customer, invoiceItems, handleClick } = props
+
   const navigate = useNavigate()
   
   return (
