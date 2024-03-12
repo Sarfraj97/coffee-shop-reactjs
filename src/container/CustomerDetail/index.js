@@ -9,8 +9,6 @@ import InvoiceNo from '../InvoicePdf/invoiceNo'
 import InvoiceItemsTable from '../InvoicePdf/invoiceItemsTable'
 import InvoiceThankYouMsg from '../InvoicePdf/invoiceThankYouMsg'
 import logo from '../../../src/avatar7.png'
-import Items from "../../components/Items";
-
 
 export default function Index(props) {
   
@@ -62,24 +60,21 @@ export default function Index(props) {
 
   return (
     <div className='container-fluid'>
-    <div className='row'>
-    <div className='col-md-4'>
-       <Items items={invoiceItems} inputText={""} handleClick={handleClick} />    
-    </div>
+    <div className='row'>    
 
     <div className='col-md-8'>
-    <PDFViewer style={styles.viewer}>
-      <Document>
-      <Page size="A4" style={styles.page}>
-        {customer.name !== 'random' && <Image style={styles.logo} src={logo} />}
-        {customer.name !== 'random' && <InvoiceTitle title='Invoice' />}
-        {customer.name !== 'random' && <InvoiceNo invoiceItems={invoiceItems} />}
-        {customer.name !== 'random' && <BillTo invoiceItems={invoiceItems} customer={customer} />}
-        <InvoiceItemsTable invoiceItems={invoiceItems} total={total_price} />
-        <InvoiceThankYouMsg />
-      </Page>
-      </Document>
-    </PDFViewer>   
+      <PDFViewer style={styles.viewer}>
+        <Document>
+          <Page size="A4" style={styles.page}>
+            {customer.name !== 'random' && <Image style={styles.logo} src={logo} />}
+            {customer.name !== 'random' && <InvoiceTitle title='Invoice' />}
+            {customer.name !== 'random' && <InvoiceNo invoiceItems={invoiceItems} />}
+            {customer.name !== 'random' && <BillTo invoiceItems={invoiceItems} customer={customer} />}
+            <InvoiceItemsTable invoiceItems={invoiceItems} total={total_price} />
+            <InvoiceThankYouMsg />
+          </Page>
+        </Document>
+      </PDFViewer>   
     </div> 
     </div>  
     </div>    
