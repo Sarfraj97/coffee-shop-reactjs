@@ -2,6 +2,7 @@ import { React, useState, useEffect } from "react";
 import Items from "../../components/Items";
 import Invoice from "../../components/Invoice";
 import ItemService from "../../services/items";
+import useHandleClick from '../../hooks/useInvoiceItemsHandler'
 import "./style.css";
 // import { type } from "@testing-library/user-event/dist/type";
 
@@ -31,7 +32,6 @@ function Dashboard() {
   }, []);  
 
   const handleClick = (id, quantity) => {
-    console.log("handleClick")
     if (quantity === '') return
     const item_to_add = items.find((i) => i.id === id);
     const find_item = invoiceItems.find((i) => i.id == item_to_add.id);
@@ -92,7 +92,8 @@ function Dashboard() {
         </ul>
             <Items items={listItems} inputText={inputText} handleClick={handleClick} />
           </div>
-          <Invoice invoiceItems={invoiceItems} handleClick={handleClick} />
+          <Invoice useHandleClick
+           />
         </div>
       </div>
     </>
