@@ -2,7 +2,7 @@ import { React, useState, useEffect } from "react";
 import Items from "../../components/Items";
 import Invoice from "../../components/Invoice";
 import ItemService from "../../services/items";
-import useHandleClick from '../../hooks/useInvoiceItemsHandler'
+// import useHandleClick from '../../hooks/useInvoiceItemsHandler'
 import "./style.css";
 // import { type } from "@testing-library/user-event/dist/type";
 
@@ -34,7 +34,7 @@ function Dashboard() {
   const handleClick = (id, quantity) => {
     if (quantity === '') return
     const item_to_add = items.find((i) => i.id === id);
-    const find_item = invoiceItems.find((i) => i.id == item_to_add.id);
+    const find_item = invoiceItems.find((i) => i.id ===src/container/Customer/index.js item_to_add.id);
     
     if ( find_item && quantity === 0 ) {
       setInvoiceItems(invoiceItems.filter(item => item.id !== find_item.id));
@@ -76,24 +76,23 @@ function Dashboard() {
        
         <div className="row">
           <div className="col-md-8 col-lg-8 col-sm-8 col-12">
-          <div class="input-group mb-3">
+            <div class="input-group mb-3">
               <input type="text" className="form-control mb-4" placeholder="Search" onChange={inputHandler}/>
                 <div class="input-group-append">
                   <button class="btn btn-primary" type="button">Search</button>
                 </div>
             </div>
              
-        <ul className="nav nav-tabs justify-content-between">        
-          {categories.map((category) => {
-            return (
-              <li className="cursor-pointer nav-item" onClick={() => filterItems('category', category)}><span className={activeNav(category)}>{category}</span></li>          
-            )
-          })}              
-        </ul>
+            <ul className="nav nav-tabs justify-content-between">        
+              {categories.map((category) => {
+                return (
+                  <li className="cursor-pointer nav-item" onClick={() => filterItems('category', category)}><span className={activeNav(category)}>{category}</span></li>          
+                )
+              })}              
+            </ul>
             <Items items={listItems} inputText={inputText} handleClick={handleClick} />
           </div>
-          <Invoice useHandleClick
-           />
+          <Invoice invoiceItems={invoiceItems} handleClick={handleClick} />
         </div>
       </div>
     </>

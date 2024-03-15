@@ -1,31 +1,37 @@
 import React, { useState, useEffect } from 'react'
 import CustomerService from "../../services/customers";
 import ListCustomer from './ListCustomer';
-import NewCustomer from './NewCustomer';
+// import NewCustomer from './NewCustomer';
 import {useLocation} from 'react-router-dom';
-
+import CreateUserModal from '../../components/Modal/createuserModal';
 
 function Customer() {
 
   const location = useLocation();
   console.log(location, "customer index page");
-  const [customerObject, setCustomerObject] = useState({})
+  // const [customerObject, setCustomerObject] = useState({})
   const [customers, setCustomers] = useState([])
   const [inputText, setInputText] = useState("");
   const [customerAdded, setCustomerAdded] = useState(false);
 
-  const handleSubmit = (e) => {
-    e.preventDefault()
-    CustomerService.create(customerObject).then(res => {
-      console.log("created successfully");
-      setCustomerAdded(true)
-    })
-  }
+  const [isOpenModal, setIsOpenModal] = useState(false);
+  
+  const handleShowModal = () => {    
+    setIsOpenModal(!isOpenModal);
+  };
+  
+  // const handleSubmit = (e) => {
+  //   e.preventDefault()
+  //   CustomerService.create(customerObject).then(res => {
+  //     console.log("created successfully");
+  //     setCustomerAdded(true)
+  //   })
+  // }
 
-  const handleChange = (e) => {
-    const value = e.target.value;
-    setCustomerObject({ ...customerObject, [e.target.name]: value })
-  }
+  // const handleChange = (e) => {
+  //   const value = e.target.value;
+  //   setCustomerObject({ ...customerObject, [e.target.name]: value })
+  // }
 
   useEffect(() => {
     CustomerService.getAll().then((customers) => {
@@ -70,13 +76,16 @@ function Customer() {
           </div>
           <div className="col-md-4 bg-gray rounded">
           <div className='p-4'>
-            <p className="font-weight-bold fs-3">Create customer</p>
-        
-            <NewCustomer handleSubmit={handleSubmit} customerObject={customerObject} handleChange={handleChange}/>
+            <button className="font-weight-bold fs-3" onClick={handleShowModal}>Create customer</button>
           </div>
           </div>
         </div>
       </div>
+
+      <CreateUserModal
+        isOpenModal={isOpenModal}
+        handleShowModal={handleShowModal}        
+      />
     </>
   );
 }
