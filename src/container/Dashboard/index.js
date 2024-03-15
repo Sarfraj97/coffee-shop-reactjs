@@ -34,7 +34,7 @@ function Dashboard() {
   const handleClick = (id, quantity) => {
     if (quantity === '') return
     const item_to_add = items.find((i) => i.id === id);
-    const find_item = invoiceItems.find((i) => i.id ===src/container/Customer/index.js item_to_add.id);
+    const find_item = invoiceItems.find((i) => i.id === item_to_add.id);
     
     if ( find_item && quantity === 0 ) {
       setInvoiceItems(invoiceItems.filter(item => item.id !== find_item.id));
