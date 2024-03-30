@@ -57,7 +57,10 @@ function Customer() {
 
   return (
     <>
-      <div className="container">
+      <div> 
+        <button className="font-weight-bold fs-3" onClick={handleShowModal}>Create customer</button>          
+      </div>
+      <div className="container">        
         <h2 className="mt-5">Customer</h2>
      
         <div className="row mt-4">
@@ -73,15 +76,9 @@ function Customer() {
                 return <ListCustomer key={customer.id} customer={customer} invoiceItems={location.state} handleClick={location.handleClick}/>
               })}
             </div>
-          </div>
-          <div className="col-md-4 bg-gray rounded">
-          <div className='p-4'>
-            <button className="font-weight-bold fs-3" onClick={handleShowModal}>Create customer</button>
-          </div>
-          </div>
-        </div>
+          </div>                    
+        </div>        
       </div>
-
       <CreateUserModal
         isOpenModal={isOpenModal}
         handleShowModal={handleShowModal}        

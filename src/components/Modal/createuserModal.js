@@ -17,30 +17,15 @@ export default function CreateUserModal(props) {
         centered={true}
       >
         <Modal.Header closeButton>
-          <Modal.Title>Are you sure to proceed</Modal.Title>
+          <Modal.Title>Create customer</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <div className="col-md-4 bg-gray rounded">
-            <div className='p-4'>
-              <p className="font-weight-bold fs-3">Create customer</p>
-          
+          <div className="">
+            <div className='p-4'>          
               <NewCustomer setIsOpenModal={setIsOpenModal} setCustomerAdded={setCustomerAdded}/>
             </div>
           </div>
-        </Modal.Body>
-        <Modal.Footer>
-          <Button
-            className={"btn btn-primary dropdown"}
-            onClick={handleShowModal}
-          >
-            Close
-          </Button>
-          <Button
-            className={"btn btn-primary dropdown"}            
-          >
-            Yes
-          </Button>
-        </Modal.Footer>
+        </Modal.Body>        
       </Modal>
   )
 }
